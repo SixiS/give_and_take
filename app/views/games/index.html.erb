@@ -1,0 +1,23 @@
+<!--<h2>Welcome to Give And Take, <small> A game where everybody wins </small></h2>-->
+<% if @games.blank? %>
+	<div id="games">
+		No games have been created yet.
+	</div>
+<% else %>
+	<h1>Games</h1>
+	<div id="games">
+		<% @games.each do |game| %>
+			<p>
+				<%= game.created_at.strftime("%d %B") %> : <%= link_to "<strong>#{game.name}</strong>", game_path(game) %>, playing to <%= game.max_rounds %>, played <%= game.round_count %> rounds so far. <br />
+				<%= link_to image_tag("bin.png"), game_path(game), :method => :delete, :class => "delete" %> Delete | <%= link_to image_tag("edit.png"), edit_game_path(game), :class => "delete" %> Edit
+			</p>
+		<% end -%>
+	</div>
+<% end %>
+<div id="games-link">
+	<%= link_to 'Start a new game', new_game_path %>
+</div>
+<p>
+<div id="cards-link">
+	<%= link_to "Manage Cards", cards_path %>
+</div>

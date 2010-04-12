@@ -1,0 +1,23 @@
+<h1>Listing cards</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Image</th>
+		<th>Type</th>
+  </tr>
+
+<% @cards.each do |card| %>
+  <tr>
+    <td><%=h card.name %></td>
+    <td><%=h card.image %></td>
+		<td><%=h card.card_type %></td>
+    <td><%= link_to 'Edit', edit_card_path(card) %></td>
+    <td><%= link_to 'Destroy', card, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New card', new_card_path %>

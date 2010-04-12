@@ -1,0 +1,21 @@
+<div id="game">
+	<h1>Round : <%= @game.round_count %> </h1>
+		<% if @game.card.card_type == "normal" %>
+			<div id="take">
+				<p><%= (@game.phase.capitalize) %> <font color="red"><strong><%= @game.current_round %></strong></font></p>
+			</div>
+			<p>for a</p>
+			<div id="card">
+				<%= display_card(@game.card) %>			
+			</div>
+		<% else %>
+			<p><font color="red">Special Round</font></p>
+			<div id="card">
+				<%= display_card(@game.card) %>
+			</div>
+		<% end %>		
+</div>
+<p>
+<div id="next">
+	<%= link_to image_tag("next_round.png", :width => "450px"), next_round_game_path(@game), :id => "next_button" %>
+</div>
