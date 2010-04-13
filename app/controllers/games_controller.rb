@@ -1,9 +1,12 @@
 class GamesController < ApplicationController
-
+  #devidse thign
+  before_filter :authenticate_user!
+  
+  
   # GET /games
   # GET /games.xml
   def index
-    @games = Game.all(:order => "created_at desc")
+    @games = current_user.games.all(:order => "created_at desc")
 
     respond_to do |format|
       format.html # index.html.erb
@@ -14,7 +17,7 @@ class GamesController < ApplicationController
   # GET /games/1
   # GET /games/1.xml
   def show
-    @game = Game.find(params[:id])
+    @game = current_user.games.find(params[:id])
     if(@game.card.nil?)
       @card = Card.all.choice
       @game.card = @card
@@ -40,13 +43,13 @@ class GamesController < ApplicationController
 
   # GET /games/1/edit
   def edit
-    @game = Game.find(params[:id])
+    @game = current_user.games.find(params[:id])
   end
 
   # POST /games
   # POST /games.xml
   def create
-    @game = Game.new(params[:game])
+    @game = current_user.games.new(params[:game])
 
     respond_to do |format|
       if @game.save
@@ -63,7 +66,7 @@ class GamesController < ApplicationController
   # PUT /games/1
   # PUT /games/1.xml
   def update
-    @game = Game.find(params[:id])
+    @game = current_user.games.find(params[:id])
 
     respond_to do |format|
       if @game.update_attributes(params[:game])
@@ -80,7 +83,7 @@ class GamesController < ApplicationController
   # DELETE /games/1
   # DELETE /games/1.xml
   def destroy
-    @game = Game.find(params[:id])
+    @game = current_user.games.find(params[:id])
     @game.destroy
 
     respond_to do |format|
@@ -90,7 +93,7 @@ class GamesController < ApplicationController
   end
   
   def next_round
-    @game = Game.find(params[:id])
+    @game = current_user.games.find(params[:id])
     @game.next_round
     redirect_to @game
   end

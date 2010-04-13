@@ -1,5 +1,6 @@
 class Game < ActiveRecord::Base
   belongs_to :card
+  belongs_to :user
   
   validates_presence_of :name
   validates_numericality_of :max_rounds

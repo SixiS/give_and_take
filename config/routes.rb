@@ -1,9 +1,11 @@
 ActionController::Routing::Routes.draw do |map|
+  map.devise_for :users
+
   map.resources :cards
 
   map.resources :games, :member => { :next_round => :get }
   
-  map.root :controller => :games, :action => :index
+  map.root :controller => :home, :action => :index
   # The priority is based upon order of creation: first created -> highest priority.
 
   # Sample of regular route:

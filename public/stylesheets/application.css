@@ -75,6 +75,7 @@
     background-repeat: no-repeat;
     background-position: top left;
     height: 64px;
+		float:left;
   }
   #header h1, #header h2 {margin: 0}
   #header h2 {
@@ -231,4 +232,16 @@
 	
 	#cards-link a:hover{
 		background-color: #fff;
+	}
+	
+	#nav{
+		float:right;
+	}
+	
+	.clear{
+		clear:both;
+	}
+	
+	#intro{
+		text-align: center;
 	}
