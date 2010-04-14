@@ -219,6 +219,7 @@
 	#games-link a{
 		color: #C3A31A;
 		text-decoration: none;
+		font-size: 18px;
 	}
 	
 	#games-link a:hover{
@@ -228,6 +229,7 @@
 	#cards-link a{
 		color: #997925;
 		text-decoration: none;
+		font-size: 18px;
 	}
 	
 	#cards-link a:hover{
@@ -244,4 +246,40 @@
 	
 	#intro{
 		text-align: center;
+	}
+	
+	#cards h1{
+		font-size: 28px;
+	}
+	
+	.center{
+		text-align: center;
+	}
+	
+	#cards td{
+		font-size: 20px;
+		padding: 10px;
+	}
+	
+	#cards th{
+		font-size: 22px;
+		text-decoration: bold;
+	}
+	
+	input{
+		font-size: 18px;
+		padding: 5px;
+	}
+	
+	label{
+		font-size: 22px;
+		text-decoration: bold;
+	}
+	
+	#games{
+		font-size: 16px;
+	}
+	
+	#games a{
+		font-size: 18px;
 	}

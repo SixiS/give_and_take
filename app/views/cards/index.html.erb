@@ -1,3 +1,4 @@
+<div id="cards">
 <% if current_user.is_admin? %>
 	<% @cards.group_by(&:card_type).each do |type, all_cards| -%>	
 		<h1><%= type.capitalize %> Cards</h1>
@@ -23,29 +24,20 @@
 	<% end -%>
 <% else %>
 	
-	<h3> Normal Cards </h3>
-	<table>
-	  <tr>
-	    <th>Card Name</th>
-	    <th>Image</th>
-	  </tr>
-
-	<% @normal_cards.each do |card| %>
-	  <tr>
-	    <td><%=h card.name %></td>
-	    <td><%=h card.image %></td>
-	  </tr>
-	<% end %>
-	</table>
+	<h1> Game Cards </h1>
+	<div class="center">
+		<% @normal_cards.in_groups_of(5,false).each do |cards| -%>
+			<p>
+				<% cards.each do |card| -%>
+					<%= image_tag card.image, :width => "100px" %>
+				<% end -%>
+			</p>
+		<% end -%>	
+	</div>
 	
-	
-	<h3> Your Cards </h3>
+	<h1> Your Special Rounds </h1>
 	<% unless @cards.blank? %>
 		<table>
-		  <tr>
-		    <th>Text</th>
-		  </tr>
-
 		<% @cards.each do |card| %>
 		  <tr>
 		    <td><%=h card.name %></td>
@@ -62,4 +54,5 @@
 
 <br />
 
-<p><%= link_to 'New special card', new_card_path %></p>
+<p><%= link_to 'New special round', new_card_path %></p>
+</div>
