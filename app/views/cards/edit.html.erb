@@ -1,25 +1,40 @@
 <h1>Editing card</h1>
+<% if current_user.is_admin? %>
+	<% form_for(@card) do |f| %>
+	  <%= f.error_messages %>
 
-<% form_for(@card) do |f| %>
-  <%= f.error_messages %>
-
-  <p>
-    <%= f.label :name, "Text" %><br />
-    <%= f.text_field :name %>
-  </p>
-  <p>
-    <%= f.label :image %><br />
-    <%= f.text_field :image %>
-  </p>
-	<p>
-		<%= f.label :type %>
-		<%= f.select :card_type, ["normal", "special"] %>
+	  <p>
+	    <%= f.label :name, "Text" %><br />
+	    <%= f.text_field :name %>
+	  </p>
+	  <p>
+	    <%= f.label :image %><br />
+	    <%= f.text_field :image %>
+	  </p>
+		<p>
+			<%= f.label :type %>
+			<%= f.select :card_type, ["normal", "special"] %>
 		
-	</p>
-  <p>
-    <%= f.submit 'Update' %>
-  </p>
-<% end %>
+		</p>
+	  <p>
+	    <%= f.submit 'Update' %>
+	  </p>
+	<% end %>
 
-<%= link_to 'Show', @card %> |
-<%= link_to 'Back', cards_path %>
+	<%= link_to 'Back', cards_path %>
+<% else %>
+	<% form_for(@card) do |f| %>
+	  <%= f.error_messages %>
+
+	  <p>
+	    <%= f.label :name, "Text" %><br />
+	    <%= f.text_field :name %>
+	  </p>
+			<%= f.hidden_field :card_type, :value => "special" %>
+	  <p>
+	    <%= f.submit 'Update' %>
+	  </p>
+	<% end %>
+	
+	<%= link_to 'Back', cards_path %>
+<% end -%>

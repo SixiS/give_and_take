@@ -5,7 +5,7 @@ class Game < ActiveRecord::Base
   validates_presence_of :name
   validates_numericality_of :max_rounds
   
-  def next_round
+  def next_round(user)
     self.round_count += 1
     if(card.card_type == "normal")    
       if current_round == max_rounds
@@ -20,8 +20,8 @@ class Game < ActiveRecord::Base
         self.current_round += 1      
       end    
     end
-    if rand(100) < 10
-      self.card = Card.special.choice    
+    if (rand(100) < 10) && !user.cards.special.blank?
+      self.card = user.cards.special.choice    
     else
       self.card = Card.normal.choice
     end

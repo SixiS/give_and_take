@@ -2,7 +2,14 @@ class CardsController < ApplicationController
   # GET /cards
   # GET /cards.xml
   def index
-    @cards = Card.all
+    if(current_user.is_admin?)
+      @cards = Card.all
+    else
+      @cards = current_user.cards.all
+      @normal_cards = Card.normal
+    end
+    
+    
 
     respond_to do |format|
       format.html # index.html.erb
@@ -41,6 +48,9 @@ class CardsController < ApplicationController
   # POST /cards.xml
   def create
     @card = Card.new(params[:card])
+    if(@card.card_type == "special")
+      @card.user_id = current_user.id
+    end
 
     respond_to do |format|
       if @card.save
@@ -58,7 +68,7 @@ class CardsController < ApplicationController
   # PUT /cards/1.xml
   def update
     @card = Card.find(params[:id])
-
+        
     respond_to do |format|
       if @card.update_attributes(params[:card])
         flash[:notice] = 'Card was successfully updated.'

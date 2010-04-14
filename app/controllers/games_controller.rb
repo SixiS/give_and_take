@@ -94,7 +94,7 @@ class GamesController < ApplicationController
   
   def next_round
     @game = current_user.games.find(params[:id])
-    @game.next_round
+    @game.next_round(current_user)
     redirect_to @game
   end
 end

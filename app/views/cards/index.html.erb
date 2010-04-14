@@ -1,23 +1,65 @@
-<h1>Listing cards</h1>
+<% if current_user.is_admin? %>
+	<% @cards.group_by(&:card_type).each do |type, all_cards| -%>	
+		<h1><%= type.capitalize %> Cards</h1>
+		<table>
+		  <tr>
+		    <th>Name</th>
+		    <th>Image</th>
+				<th>Type</th>
+		  </tr>
+		<% all_cards.group_by(&:user_id).each do |user, user_cards| %>
+			<tr><td><h4><font style="font-size:20px;"><%= user.nil? ? "No user" : "#{User.find(user).email}" %></font></h4></td></tr>
+			<% user_cards.each do |card| %>
+				<tr>
+			    <td><%=h card.name %></td>
+			    <td><%=h card.image %></td>
+					<td><%=h card.card_type %></td>
+			    <td><%= link_to 'Edit', edit_card_path(card) %></td>
+			    <td><%= link_to 'Destroy', card, :confirm => 'Are you sure?', :method => :delete %></td>
+			  </tr>
+			<% end %>
+		<% end -%>
+		</table>
+	<% end -%>
+<% else %>
+	
+	<h3> Normal Cards </h3>
+	<table>
+	  <tr>
+	    <th>Card Name</th>
+	    <th>Image</th>
+	  </tr>
 
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Image</th>
-		<th>Type</th>
-  </tr>
+	<% @normal_cards.each do |card| %>
+	  <tr>
+	    <td><%=h card.name %></td>
+	    <td><%=h card.image %></td>
+	  </tr>
+	<% end %>
+	</table>
+	
+	
+	<h3> Your Cards </h3>
+	<% unless @cards.blank? %>
+		<table>
+		  <tr>
+		    <th>Text</th>
+		  </tr>
 
-<% @cards.each do |card| %>
-  <tr>
-    <td><%=h card.name %></td>
-    <td><%=h card.image %></td>
-		<td><%=h card.card_type %></td>
-    <td><%= link_to 'Edit', edit_card_path(card) %></td>
-    <td><%= link_to 'Destroy', card, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
+		<% @cards.each do |card| %>
+		  <tr>
+		    <td><%=h card.name %></td>
+		    <td><%= link_to 'Edit', edit_card_path(card) %></td>
+		    <td><%= link_to 'Destroy', card, :confirm => 'Are you sure?', :method => :delete %></td>
+		  </tr>
+		<% end %>
+		</table>
+	<% else %>
+		You have not created any custom cards yet.
+	<% end %>
+	
 <% end %>
-</table>
 
 <br />
 
-<%= link_to 'New card', new_card_path %>
+<p><%= link_to 'New special card', new_card_path %></p>
