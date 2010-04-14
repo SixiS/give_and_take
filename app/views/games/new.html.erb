@@ -5,11 +5,13 @@
 
   <p>
     <%= f.label :name %><br />
-    <%= f.text_field :name %>
+    <%= f.text_field :name %><br />
+		<small>E.g. Jono's Birthday game</small>		
   </p>
   <p>
     <%= f.label :max_rounds, "Play to" %><br />
-    <%= f.text_field :max_rounds %>
+    <%= f.text_field :max_rounds %><br />
+		<small>The number of rounds to play to before switching the type.<br> E.g. Take 3 goes to Give 1 when you are playing to 3.</small>
   </p>
   <p>
     <%= f.submit 'Create' %>

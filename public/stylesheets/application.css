@@ -64,10 +64,15 @@
   }
   
 
-  #header, #about, #getting-started {
+  #header, #about {
     padding-left: 75px;
     padding-right: 30px;
   }
+	
+	#getting-started {
+		padding-left: 30px;
+    padding-right: 30px;
+	}
 
 
   #header {
@@ -238,6 +243,7 @@
 	
 	#nav{
 		float:right;
+		text-align:right;
 	}
 	
 	.clear{
@@ -282,4 +288,12 @@
 	
 	#games a{
 		font-size: 18px;
+	}
+	
+	#rules {
+		margin: 40px;
+		padding: 10px;
+		text-align: left;
+		border: 3px solid #aaa;
+		background-color:#F5F5F5;
 	}

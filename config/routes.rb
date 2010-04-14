@@ -6,6 +6,8 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :games, :member => { :next_round => :get }
   
   map.root :controller => :home, :action => :index
+  
+  map.rules "/rules", :controller => :home, :action => :rules
   # The priority is based upon order of creation: first created -> highest priority.
 
   # Sample of regular route:
