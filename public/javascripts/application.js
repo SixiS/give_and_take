@@ -2,5 +2,5 @@
 // This file is automatically included by javascript_include_tag :defaults
 $(document).ready(function() {
 	$("#next_button").focus();
-	$("input:password").nakedPassword({path: "/images/np/"}); 
+	$("input:password").nakedPassword({path: "/images/np/"});
 });

@@ -1,3 +1,7 @@
+<% content_for :javascript do -%>
+	<%= javascript_include_tag 'anykey' %>
+<% end -%>
+
 <div id="game">
 	<h1>Round : <%= @game.round_count %> </h1>
 		<% if @game.card.card_type == "normal" %>
