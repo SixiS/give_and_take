@@ -14,9 +14,10 @@
 			</div>
 		<% else %>
 			<p><font color="red">Special Round</font></p>
-			<div id="card">
-				<%= display_card(@game.card) %>
+			<div id="card" style="font-size: 60px;">
+				<%= @game.card.name %>
 			</div>
+			<% unless @game.card.image.blank? %><p><img style="height: 300px;" src="<%= @game.card.image %>"></p><% end %>
 		<% end %>		
 </div>
 <p>

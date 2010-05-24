@@ -1,5 +1,4 @@
 <h1>New card</h1>
-<% if current_user.is_admin? %>
 	<% form_for(@card) do |f| %>
 	  <%= f.error_messages %>
 
@@ -7,36 +6,26 @@
 	    <%= f.label :name, "Text" %><br />
 	    <%= f.text_field :name %>
 	  </p>
+		<small>E.g. Everybody drinks once</small>
 	  <p>
 	    <%= f.label :image %><br />
 	    <%= f.text_field :image %>
 	  </p>
-		<p>
-			<%= f.label :type %>
-			<%= f.select :card_type, ["normal", "special"] %>
-		</p>
+		<small>E.g. http://icanhascheezburger.files.wordpress.com/2007/12/funny-pictures-lol-squid.jpg</small>
+		<% if current_user.is_admin? %>
+			<p>
+				<%= f.label :type %>
+				<%= f.select :card_type, ["normal", "special"] %>
+			</p>
+		<% else %>
+			</p>
+				<%= f.hidden_field :card_type, :value => "special" %>
+		  <p>
+		<% end %>
+		
 	  <p>
 	    <%= f.submit 'Create' %>
 	  </p>
 	<% end %>
 
 	<%= link_to 'Back', cards_path %>
-<% else %>
-	<% form_for(@card) do |f| %>
-	  <%= f.error_messages %>
-
-	  <p>
-	    <%= f.label :name, "Text" %><br />
-	    <%= f.text_field :name %><br />
-			<small>E.g. Everybody drinks once</small>
-	
-	  </p>
-			<%= f.hidden_field :card_type, :value => "special" %>
-	  <p>
-	    <%= f.submit 'Create' %>
-	  </p>
-	<% end %>
-
-	<%= link_to 'Back', cards_path %>
-<% end %>
-
